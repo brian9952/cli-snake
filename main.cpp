@@ -1,5 +1,5 @@
 #include<ncurses.h>
-#include<string>
+#include<iostream>
 #include "include/window.cpp"
 
 void initCurses();
@@ -17,6 +17,11 @@ int main(int argc, char ** argv){
 
     mainWin = createMainWindow(mainWin, yMax, xMax);
     sideWin = createSideWindow(sideWin, yMax, xMax);
+
+    // object declaration
+    Menu *win = new Menu(mainWin, sideWin);
+
+    win->showMenu();
 
     getch();
     endwin();
