@@ -10,12 +10,12 @@ class Menu {
         WINDOW * mainWin;
         WINDOW * sideWin;
         std::string choice[3] = {"Start", "Settings", "Exit"};
-        int highlight = 0;
 
     public:
         Menu(WINDOW * mainWin_param, WINDOW * sideWin_param);
-        void showMenu();
+        void showMenu(int highlight);
         void showTutor();
+        char getInput();
 
 };
 

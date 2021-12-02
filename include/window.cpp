@@ -6,7 +6,7 @@ Menu::Menu(WINDOW * mainWin_param, WINDOW * sideWin_param){
     sideWin = sideWin_param;
 }
 
-void Menu::showMenu(){
+void Menu::showMenu(int highlight){
     int yMax, xMax;
     getmaxyx(mainWin, yMax, xMax);
 
@@ -23,5 +23,10 @@ void Menu::showMenu(){
 
     wrefresh(mainWin);
 
+}
+
+char Menu::getInput(){
+    char c = wgetch(mainWin);
+    return c;
 }
 

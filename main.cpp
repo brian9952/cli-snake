@@ -5,11 +5,13 @@
 void initCurses();
 WINDOW *createMainWindow(WINDOW * win, int yMax, int xMax);
 WINDOW *createSideWindow(WINDOW * win, int yMax, int xMax);
+int menuSelection(int choice, int highlight);
 
 int main(int argc, char ** argv){
     initCurses();
 
     int yMax, xMax;
+    int highlight = 0;
     getmaxyx(stdscr, yMax, xMax);
     WINDOW * mainWin;
     WINDOW * sideWin;
@@ -21,7 +23,11 @@ int main(int argc, char ** argv){
     // object declaration
     Menu *win = new Menu(mainWin, sideWin);
 
-    win->showMenu();
+    while(c = ){
+        win->showMenu(highlight);
+        char c = win->getInput();
+        highlight = menuSelection(c, highlight);
+    }
 
     getch();
     endwin();
@@ -33,6 +39,7 @@ void initCurses(){
     initscr();
     noecho();
     cbreak();
+    curs_set(0);
 }
 
 WINDOW *createMainWindow(WINDOW * win, int yMax, int xMax){
@@ -49,4 +56,24 @@ WINDOW *createSideWindow(WINDOW * win, int yMax, int xMax){
     wrefresh(win);
 
     return win;
+}
+
+int menuSelection(int choice, int highlight){
+
+    switch(choice){
+        case 'j':
+            highlight++;
+            if(highlight > 2)
+                highlight = 2;
+            break;
+        case 'k':
+            highlight--;
+            if(highlight < 0)
+                highlight = 0;
+            break;
+        default:
+            break;
+    }
+
+    return highlight;
 }
