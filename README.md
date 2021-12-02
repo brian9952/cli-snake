@@ -1,2 +1,2 @@
 # cli-snake
-A snake game project using c++
+A snake game project using c++ (under construction)
