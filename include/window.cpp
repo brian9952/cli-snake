@@ -13,7 +13,7 @@ void Menu::showMenu(int highlight){
     int xCenter = (xMax / 2) - 5;
     int yCenter = yMax / 2;
 
-    for(int i = 0; i < sizeof(choice); i++){
+    for(int i = 0; i < 3; i++){
         if(i == highlight){
             wattron(mainWin, A_REVERSE);
         }
@@ -22,11 +22,15 @@ void Menu::showMenu(int highlight){
     }
 
     wrefresh(mainWin);
-
 }
 
 char Menu::getInput(){
     char c = wgetch(mainWin);
     return c;
+}
+
+void Menu::refreshWindows(char c){
+    mvwprintw(mainWin, 1, 1, "%d", sizeof(choice));
+    wrefresh(mainWin);
 }
 

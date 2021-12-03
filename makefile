@@ -2,7 +2,7 @@
 CC = g++
 
 # define compiler flags
-CFLAGS = -g -Wall -lncurses
+CFLAGS = -g -lncurses
 
 # build target executable
 TARGET = cli-snake

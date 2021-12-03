@@ -23,9 +23,9 @@ int main(int argc, char ** argv){
     // object declaration
     Menu *win = new Menu(mainWin, sideWin);
 
-    while(c = ){
+    while(1){
         win->showMenu(highlight);
-        char c = win->getInput();
+        int c = win->getInput();
         highlight = menuSelection(c, highlight);
     }
 
