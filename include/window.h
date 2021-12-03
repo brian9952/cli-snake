@@ -16,7 +16,7 @@ class Menu {
         void showMenu(int highlight);
         void showTutor();
         char getInput();
-        void refreshWindows(char c);
+        ~Menu();
 
 };
 

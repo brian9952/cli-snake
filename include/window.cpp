@@ -4,6 +4,7 @@
 Menu::Menu(WINDOW * mainWin_param, WINDOW * sideWin_param){
     mainWin = mainWin_param;
     sideWin = sideWin_param;
+    keypad(mainWin, true);
 }
 
 void Menu::showMenu(int highlight){
@@ -29,8 +30,7 @@ char Menu::getInput(){
     return c;
 }
 
-void Menu::refreshWindows(char c){
-    mvwprintw(mainWin, 1, 1, "%d", sizeof(choice));
-    wrefresh(mainWin);
+Menu::~Menu(){
+    delwin(mainWin);
+    delwin(sideWin);
 }
-

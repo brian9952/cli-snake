@@ -22,14 +22,32 @@ int main(int argc, char ** argv){
 
     // object declaration
     Menu *win = new Menu(mainWin, sideWin);
+    refresh();
 
+    // main menu looping
     while(1){
         win->showMenu(highlight);
         int c = win->getInput();
         highlight = menuSelection(c, highlight);
+
+        if(c == 10){
+            delete win;
+
+            if(highlight == 0){
+                // play
+
+            }else if(highlight == 1){
+                // settings
+
+            }else{
+                // exit
+                break;
+            }
+
+        }
     }
 
-    getch();
+
     endwin();
 
     return 0;
