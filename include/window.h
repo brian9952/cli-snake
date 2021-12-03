@@ -13,7 +13,9 @@ class Menu {
 
     public:
         Menu(WINDOW * mainWin_param, WINDOW * sideWin_param);
+        void showLogo();
         void showMenu(int highlight);
+        void sideMenu(int highlight);
         void showTutor();
         char getInput();
         ~Menu();

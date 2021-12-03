@@ -27,6 +27,7 @@ int main(int argc, char ** argv){
     // main menu looping
     while(1){
         win->showMenu(highlight);
+        win->sideMenu(highlight);
         int c = win->getInput();
         highlight = menuSelection(c, highlight);
 
@@ -61,7 +62,7 @@ void initCurses(){
 }
 
 WINDOW *createMainWindow(WINDOW * win, int yMax, int xMax){
-    win = newwin(yMax, xMax - 20, 0, 0);
+    win = newwin(yMax, xMax - 25, 0, 0);
     box(win, 0, 0);
     wrefresh(win);
 
@@ -69,7 +70,7 @@ WINDOW *createMainWindow(WINDOW * win, int yMax, int xMax){
 }
 
 WINDOW *createSideWindow(WINDOW * win, int yMax, int xMax){
-    win = newwin(yMax, 20, 0, xMax - 20);
+    win = newwin(yMax, 25, 0, xMax - 25);
     box(win, 0, 0);
     wrefresh(win);
 
