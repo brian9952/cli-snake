@@ -1,5 +1,6 @@
 #include<ncurses.h>
 #include<iostream>
+#include<unistd.h>
 #include "include/window.cpp"
 #include "include/player.cpp"
 
@@ -42,8 +43,10 @@ int main(int argc, char ** argv){
                 nodelay(stdscr, TRUE);
                 Player * player = new Player(mainWin, sideWin);
                 while(1){
+                    refresh();
+                    sleep(1);
                     if((ch = getch()) == ERR){
-                        player->movePlayer('l');
+                        player->movePlayer('n');
                     }
                 }
 
