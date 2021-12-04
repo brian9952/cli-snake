@@ -14,6 +14,7 @@ class Player {
         char direction[128]; // 'u' for up, 'l' for left, 'r' for right, 'd' for down
 
         void noneInput();
+        void leftInput();
 
     public:
         Player(WINDOW * mainWin_param, WINDOW * sideWin_param);

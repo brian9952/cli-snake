@@ -44,9 +44,13 @@ int main(int argc, char ** argv){
                 Player * player = new Player(mainWin, sideWin);
                 while(1){
                     refresh();
-                    sleep(1);
-                    if((ch = getch()) == ERR){
+                    ch = getch();
+                    flushinp();
+                    if(ch == ERR){
                         player->movePlayer('n');
+                        usleep(90000);
+                    }else{
+                        player->movePlayer(ch);
                     }
                 }
 

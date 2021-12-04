@@ -26,6 +26,9 @@ void Player::movePlayer(char input){ // 'n' for none
         case 'n':
             this->noneInput();
             break;
+        case 'h':
+            this->leftInput();
+            break;
     }
 
 }
@@ -41,22 +44,28 @@ void Player::noneInput(){
             if(i == 0)
                 head_yPos -= 1;
 
-            mvwprintw(mainWin, head_yPos + i, head_xPos, "%c", '@');
+            mvwprintw(mainWin, head_yPos + 1, head_xPos, "%c", '@');
 
-            if(i == (length - 1)){
-                tail_yPos -= 1;
-                mvwprintw(mainWin, tail_yPos, tail_xPos, "%c", ' ');
-            }
+        }else if(direction[i] == 'h'){
 
-            mvwprintw(mainWin, 1, 1, "%d, %d", head_yPos, tail_yPos);
+            if(i == 0)
+                head_xPos -= 1;
+
+            mvwprintw(mainWin, head_yPos, head_xPos - 1, "%c", '@');
 
         }
 
     }
+
+    mvwprintw(mainWin, 1, 1, "%s", direction);
 
     //for(int i = 0; i < length; i++){
     //    mvwprintw(mainWin, yPos + i, xPos, "%c", '@');
     //}
 
     wrefresh(mainWin);
+}
+
+void Player::leftInput(){
+    direction[0] = 'h';
 }
