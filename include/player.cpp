@@ -33,24 +33,26 @@ void Player::movePlayer(char input){ // 'n' for none
 // private method
 void Player::noneInput(){
     char temp[32];
-    int yPos_temp, xPos_temp;
 
-    for(int i = 0;i < length; i++){
+    for(int i = 0; i < length; i++){
+
         if(direction[i] == 'u'){
+
             if(i == 0)
-                yPos_temp = yPos - 1;
-            
-            mvwprintw(mainWin, yPos - i, xPos, "%c", '@');
+                head_yPos -= 1;
+
+            mvwprintw(mainWin, head_yPos + i, head_xPos, "%c", '@');
+
+            if(i == (length - 1)){
+                tail_yPos -= 1;
+                mvwprintw(mainWin, tail_yPos, tail_xPos, "%c", ' ');
+            }
+
+            mvwprintw(mainWin, 1, 1, "%d, %d", head_yPos, tail_yPos);
+
         }
 
-        if(i == length)
-            switch(direction[i]){
-                case 'u':
-                    
-            }
     }
-
-    yPos = yPos_temp;
 
     //for(int i = 0; i < length; i++){
     //    mvwprintw(mainWin, yPos + i, xPos, "%c", '@');
