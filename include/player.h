@@ -8,10 +8,10 @@ class Player {
     private:
         WINDOW * mainWin;
         WINDOW * sideWin;
-        int head_yPos, head_xPos;
-        int tail_yPos, tail_xPos;
+        int yPos, xPos;
         int length;
-        char direction[128]; // 'u' for up, 'l' for left, 'r' for right, 'd' for down
+        char direction[0]; // 'u' for up, 'l' for left, 'r' for right, 'd' for down
+        int positionHistory[100];
 
         void noneInput();
         void leftInput();

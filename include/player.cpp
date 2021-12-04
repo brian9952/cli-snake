@@ -15,9 +15,7 @@ Player::Player(WINDOW * mainWin_param, WINDOW * sideWin_param){
     tail_yPos = head_yPos + 5;
     tail_xPos = head_xPos;
 
-    for(int i = 0; i < length; i++){
-        direction[i] = 'u';
-    }
+    direction[0] = {'u'};
 }
 
 void Player::movePlayer(char input){ // 'n' for none
@@ -39,21 +37,7 @@ void Player::noneInput(){
 
     for(int i = 0; i < length; i++){
 
-        if(direction[i] == 'u'){
-
-            if(i == 0)
-                head_yPos -= 1;
-
-            mvwprintw(mainWin, head_yPos + 1, head_xPos, "%c", '@');
-
-        }else if(direction[i] == 'h'){
-
-            if(i == 0)
-                head_xPos -= 1;
-
-            mvwprintw(mainWin, head_yPos, head_xPos - 1, "%c", '@');
-
-        }
+        direction[i + 1] = direction[i];
 
     }
 
