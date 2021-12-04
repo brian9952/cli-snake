@@ -1,6 +1,7 @@
 #include<ncurses.h>
 #include<iostream>
 #include "include/window.cpp"
+#include "include/player.cpp"
 
 void initCurses();
 WINDOW *createMainWindow(WINDOW * win, int yMax, int xMax);
@@ -33,9 +34,18 @@ int main(int argc, char ** argv){
 
         if(c == 10){
             delete win;
+            mainWin = createMainWindow(mainWin, yMax, xMax);
+            sideWin = createSideWindow(sideWin, yMax, xMax);
 
             if(highlight == 0){
-                // play
+                int ch;
+                nodelay(stdscr, TRUE);
+                Player * player = new Player(mainWin, sideWin);
+                while(1){
+                    if((ch = getch()) == ERR){
+                        player->movePlayer('l');
+                    }
+                }
 
             }else if(highlight == 1){
                 // settings

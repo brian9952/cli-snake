@@ -10,7 +10,7 @@ class Player {
         WINDOW * sideWin;
         int yPos, xPos;
         int length;
-        char heading[];
+        char direction[128];
 
     public:
         Player(WINDOW * mainWin_param, WINDOW * sideWin_param);
