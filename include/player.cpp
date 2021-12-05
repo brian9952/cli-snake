@@ -9,13 +9,18 @@ Player::Player(WINDOW * mainWin_param, WINDOW * sideWin_param){
     getmaxyx(mainWin, yMax, xMax);
 
     length = 5;
-    head_yPos = yMax / 2;
-    head_xPos = xMax / 2;
-
-    tail_yPos = head_yPos + 5;
-    tail_xPos = head_xPos;
+    yPos = yMax / 2;
+    xPos = xMax / 2;
 
     direction[0] = {'u'};
+
+    for(int i = 0; i < length; i++){
+        yPos_hist[i] = yPos + i;
+        xPos_hist[i] = xPos;
+
+        mvwprintw(mainWin, yPos + i, xPos, "%c", '@');
+    }
+
 }
 
 void Player::movePlayer(char input){ // 'n' for none
@@ -33,19 +38,6 @@ void Player::movePlayer(char input){ // 'n' for none
 
 // private method
 void Player::noneInput(){
-    char temp[32];
-
-    for(int i = 0; i < length; i++){
-
-        direction[i + 1] = direction[i];
-
-    }
-
-    mvwprintw(mainWin, 1, 1, "%s", direction);
-
-    //for(int i = 0; i < length; i++){
-    //    mvwprintw(mainWin, yPos + i, xPos, "%c", '@');
-    //}
 
     wrefresh(mainWin);
 }
