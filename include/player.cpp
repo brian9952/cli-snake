@@ -64,36 +64,24 @@ void Player::noneInput(){
 
     if(direction[0] == 'u'){
         yPos -= 1;
-        mvwprintw(mainWin, yPos, xPos, "%c", '@');
-        mvwprintw(mainWin, yPos_hist[length - 1], xPos_hist[length - 1], "%c", ' ');
-
         shiftArray(yPos_p);
         shiftArray(xPos_p);
-
     }else if(direction[0] == 'l'){
         xPos -= 1;
-        mvwprintw(mainWin, yPos, xPos, "%c", '@');
-        mvwprintw(mainWin, yPos_hist[length - 1], xPos_hist[length - 1], "%c", ' ');
-        
         shiftArray(yPos_p);
         shiftArray(xPos_p);
     }else if(direction[0] == 'd'){
         yPos += 1;
-
-        mvwprintw(mainWin, yPos, xPos, "%c", '@');
-        mvwprintw(mainWin, yPos_hist[length - 1], xPos_hist[length - 1], "%c", ' ');
-
         shiftArray(yPos_p);
         shiftArray(xPos_p);
     }else if(direction[0] == 'r'){
         xPos += 1;
-
-        mvwprintw(mainWin, yPos, xPos, "%c", '@');
-        mvwprintw(mainWin, yPos_hist[length - 1], xPos_hist[length - 1], "%c", ' ');
-
         shiftArray(yPos_p);
         shiftArray(xPos_p);
     }
+
+    mvwprintw(mainWin, yPos, xPos, "%c", '@');
+    mvwprintw(mainWin, yPos_hist[length], xPos_hist[length], "%c", ' ');
 
     yPos_hist[0] = yPos;
     xPos_hist[0] = xPos;
