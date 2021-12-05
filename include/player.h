@@ -12,8 +12,8 @@ class Player {
         int yPos_hist[30], xPos_hist[30];
         int length;
         char direction[0]; // 'u' for up, 'l' for left, 'r' for right, 'd' for down
-        int positionHistory[100];
 
+        void shiftArray(int *& arr);
         void noneInput();
         void leftInput();
 

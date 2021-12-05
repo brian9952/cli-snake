@@ -48,7 +48,8 @@ int main(int argc, char ** argv){
                     flushinp();
                     if(ch == ERR){
                         player->movePlayer('n');
-                        usleep(90000);
+                        mvwprintw(mainWin, 1, 1, "%s", "                     ");
+                        usleep(1000000);
                     }else{
                         player->movePlayer(ch);
                     }
