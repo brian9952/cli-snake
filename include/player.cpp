@@ -8,7 +8,7 @@ Player::Player(WINDOW * mainWin_param, WINDOW * sideWin_param){
     int yMax, xMax;
     getmaxyx(mainWin, yMax, xMax);
 
-    length = 5;
+    length = 10;
     yPos = yMax / 2;
     xPos = xMax / 2;
 
@@ -30,16 +30,25 @@ void Player::movePlayer(char input){ // 'n' for none
             this->noneInput();
             break;
         case 'h':
-            this->leftInput();
+            direction[0] = 'l';
+            break;
+        case 'j':
+            direction[0] = 'd';
+            break;
+        case 'k':
+            direction[0] = 'u';
+            break;
+        case 'l':
+            direction[0] = 'r';
             break;
     }
 
 }
 
 void Player::shiftArray(int *& arr){
-    int arr_temp[10];
+    int arr_temp[30];
 
-    for(int i = 0; i < 10; i++){
+    for(int i = 0; i < 30; i++){
         arr_temp[i] = arr[i];
     }
 
@@ -50,34 +59,48 @@ void Player::shiftArray(int *& arr){
 
 // private method
 void Player::noneInput(){
+    int *yPos_p = yPos_hist;
+    int *xPos_p = xPos_hist;
 
-    switch(direction[0]){
-        case 'u':
-            yPos -= 1;
+    if(direction[0] == 'u'){
+        yPos -= 1;
+        mvwprintw(mainWin, yPos, xPos, "%c", '@');
+        mvwprintw(mainWin, yPos_hist[length - 1], xPos_hist[length - 1], "%c", ' ');
 
-            int *yPos_p = yPos_hist;
-            int *xPos_p = xPos_hist;
+        shiftArray(yPos_p);
+        shiftArray(xPos_p);
 
-            mvwprintw(mainWin, yPos, xPos, "%c", '@');
-            mvwprintw(mainWin, yPos_hist[length], xPos_hist[length], "%c", ' ');
-            for(int i = 0; i < length; i++){
-                mvwprintw(mainWin, i+1, 1, "%d", yPos_hist[i]);
-            }
-            //mvwprintw(mainWin, 2, 1, "%d", length);
-            
-            shiftArray(yPos_p);
-            shiftArray(xPos_p);
+    }else if(direction[0] == 'l'){
+        xPos -= 1;
+        mvwprintw(mainWin, yPos, xPos, "%c", '@');
+        mvwprintw(mainWin, yPos_hist[length - 1], xPos_hist[length - 1], "%c", ' ');
+        
+        shiftArray(yPos_p);
+        shiftArray(xPos_p);
+    }else if(direction[0] == 'd'){
+        yPos += 1;
 
-            yPos_hist[0] = yPos;
-            xPos_hist[0] = xPos;
-            
+        mvwprintw(mainWin, yPos, xPos, "%c", '@');
+        mvwprintw(mainWin, yPos_hist[length - 1], xPos_hist[length - 1], "%c", ' ');
 
-            break;
+        shiftArray(yPos_p);
+        shiftArray(xPos_p);
+    }else if(direction[0] == 'r'){
+        xPos += 1;
+
+        mvwprintw(mainWin, yPos, xPos, "%c", '@');
+        mvwprintw(mainWin, yPos_hist[length - 1], xPos_hist[length - 1], "%c", ' ');
+
+        shiftArray(yPos_p);
+        shiftArray(xPos_p);
+    }
+
+    yPos_hist[0] = yPos;
+    xPos_hist[0] = xPos;
+
+    for(int i = 0; i < length; i++){
+        mvwprintw(mainWin, i+1, 1, "%d", yPos_hist[i]);
     }
 
     wrefresh(mainWin);
-}
-
-void Player::leftInput(){
-    direction[0] = 'h';
 }

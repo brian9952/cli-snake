@@ -16,6 +16,7 @@ class Player {
         void shiftArray(int *& arr);
         void noneInput();
         void leftInput();
+        void upInput();
 
     public:
         Player(WINDOW * mainWin_param, WINDOW * sideWin_param);
