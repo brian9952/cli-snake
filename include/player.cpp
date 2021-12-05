@@ -64,21 +64,16 @@ void Player::noneInput(){
 
     if(direction[0] == 'u'){
         yPos -= 1;
-        shiftArray(yPos_p);
-        shiftArray(xPos_p);
     }else if(direction[0] == 'l'){
         xPos -= 1;
-        shiftArray(yPos_p);
-        shiftArray(xPos_p);
     }else if(direction[0] == 'd'){
         yPos += 1;
-        shiftArray(yPos_p);
-        shiftArray(xPos_p);
     }else if(direction[0] == 'r'){
         xPos += 1;
-        shiftArray(yPos_p);
-        shiftArray(xPos_p);
     }
+
+    shiftArray(yPos_p);
+    shiftArray(xPos_p);
 
     mvwprintw(mainWin, yPos, xPos, "%c", '@');
     mvwprintw(mainWin, yPos_hist[length], xPos_hist[length], "%c", ' ');
