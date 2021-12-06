@@ -40,6 +40,7 @@ int main(int argc, char ** argv){
 
             if(highlight == 0){
                 int ch;
+                int collision;
                 nodelay(stdscr, TRUE);
                 Player * player = new Player(mainWin, sideWin);
                 while(1){
@@ -52,6 +53,7 @@ int main(int argc, char ** argv){
                     }else{
                         player->movePlayer(ch);
                     }
+                    collision = player->checkCollision();
                 }
 
             }else if(highlight == 1){

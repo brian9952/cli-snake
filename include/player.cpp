@@ -65,6 +65,15 @@ void Player::shiftArray(int *& arr){
     }
 }
 
+int Player::checkCollision(){
+    for(int i = 0; i < length; i++){
+        if(yPos_hist[i] == yPos && xPos_hist[i] == xPos){
+            return 1;
+        }
+    }
+    return 0;
+}
+
 // private method
 void Player::noneInput(){
     int *yPos_p = yPos_hist;
@@ -105,6 +114,10 @@ void Player::noneInput(){
             xPos += 1;
         }
 
+    }
+
+    if(checkCollision()){
+        mvwprintw(mainWin, 1, 15, "%s", "LOSEEE");
     }
 
     shiftArray(yPos_p);

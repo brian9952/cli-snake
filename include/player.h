@@ -13,13 +13,13 @@ class Player {
         int length;
         char direction[0]; // 'u' for up, 'l' for left, 'r' for right, 'd' for down
 
-        void checkWall();
         void shiftArray(int *& arr);
         void noneInput();
 
     public:
         Player(WINDOW * mainWin_param, WINDOW * sideWin_param);
         void movePlayer(char input);
+        int checkCollision();
         ~Player();
 
 };
