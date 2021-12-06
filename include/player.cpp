@@ -69,15 +69,42 @@ void Player::shiftArray(int *& arr){
 void Player::noneInput(){
     int *yPos_p = yPos_hist;
     int *xPos_p = xPos_hist;
+    int yMax, xMax;
+
+    getmaxyx(mainWin, yMax, xMax);
 
     if(direction[0] == 'u'){
-        yPos -= 1;
+
+        if(yPos - 1 == 0){
+            yPos = yMax - 2;
+        }else{
+            yPos -= 1;
+        }
+
     }else if(direction[0] == 'l'){
-        xPos -= 1;
+
+        if(xPos - 1 == 0){
+            xPos = xMax - 2;
+        }else{
+            xPos -= 1;
+        }
+
     }else if(direction[0] == 'd'){
-        yPos += 1;
+
+        if(yPos + 2 == yMax){
+            yPos = 1;
+        }else{
+            yPos += 1;
+        }
+
     }else if(direction[0] == 'r'){
-        xPos += 1;
+
+        if(xPos + 2 == xMax){
+            xPos = 1;
+        }else{
+            xPos += 1;
+        }
+
     }
 
     shiftArray(yPos_p);
@@ -90,7 +117,7 @@ void Player::noneInput(){
     xPos_hist[0] = xPos;
 
     for(int i = 0; i < length; i++){
-        mvwprintw(mainWin, i+1, 1, "%d", yPos_hist[i]);
+        mvwprintw(mainWin, i+1, 1, "%d %d", yPos_hist[i], xPos_hist[i]);
     }
 
     wrefresh(mainWin);
