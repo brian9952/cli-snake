@@ -30,15 +30,23 @@ void Player::movePlayer(char input){ // 'n' for none
             this->noneInput();
             break;
         case 'h':
+            if(direction[0] == 'r')
+                break;
             direction[0] = 'l';
             break;
         case 'j':
+            if(direction[0] == 'u')
+                break;
             direction[0] = 'd';
             break;
         case 'k':
+            if(direction[0] == 'd')
+                break;
             direction[0] = 'u';
             break;
         case 'l':
+            if(direction[0] == 'l')
+                break;
             direction[0] = 'r';
             break;
     }
