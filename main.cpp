@@ -39,8 +39,7 @@ int main(int argc, char ** argv){
             sideWin = createSideWindow(sideWin, yMax, xMax);
 
             if(highlight == 0){
-                int ch;
-                int collision;
+                int ch, collision;
                 nodelay(stdscr, TRUE);
                 Player * player = new Player(mainWin, sideWin);
                 while(1){
@@ -48,12 +47,11 @@ int main(int argc, char ** argv){
                     ch = getch();
                     flushinp();
                     if(ch == ERR){
-                        player->movePlayer('n');
+                        collision = player->movePlayer('n');
                         usleep(100000);
                     }else{
                         player->movePlayer(ch);
                     }
-                    collision = player->checkCollision();
                 }
 
             }else if(highlight == 1){

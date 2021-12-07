@@ -23,11 +23,13 @@ Player::Player(WINDOW * mainWin_param, WINDOW * sideWin_param){
 
 }
 
-void Player::movePlayer(char input){ // 'n' for none
+int Player::movePlayer(char input){ // 'n' for none
+
+    int collision = 0;
 
     switch(input){
         case 'n':
-            this->noneInput();
+            collision = this->noneInput();
             break;
         case 'h':
             if(direction[0] == 'r')
@@ -51,6 +53,8 @@ void Player::movePlayer(char input){ // 'n' for none
             break;
     }
 
+    return collision;
+
 }
 
 void Player::shiftArray(int *& arr){
@@ -65,7 +69,7 @@ void Player::shiftArray(int *& arr){
     }
 }
 
-int Player::checkCollision(){
+int Player::checkCollision(int yPos, int xPos, int yPos_hist[30], int xPos_hist[30]){
     for(int i = 0; i < length; i++){
         if(yPos_hist[i] == yPos && xPos_hist[i] == xPos){
             return 1;
@@ -75,10 +79,11 @@ int Player::checkCollision(){
 }
 
 // private method
-void Player::noneInput(){
+int Player::noneInput(){
     int *yPos_p = yPos_hist;
     int *xPos_p = xPos_hist;
     int yMax, xMax;
+    int collision;
 
     getmaxyx(mainWin, yMax, xMax);
 
@@ -116,9 +121,12 @@ void Player::noneInput(){
 
     }
 
-    if(checkCollision()){
-        mvwprintw(mainWin, 1, 15, "%s", "LOSEEE");
+    if(checkCollision(yPos, xPos, yPos_hist, xPos_hist)){
+        collision = 1;
+    }else{
+        collision = 0;
     }
+
 
     shiftArray(yPos_p);
     shiftArray(xPos_p);
@@ -134,4 +142,6 @@ void Player::noneInput(){
     }
 
     wrefresh(mainWin);
+    
+    return collision;
 }
