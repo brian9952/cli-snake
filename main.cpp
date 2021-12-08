@@ -34,9 +34,9 @@ int main(int argc, char ** argv){
         highlight = menuSelection(c, highlight);
 
         if(c == 10){
-            delete win;
-            mainWin = createMainWindow(mainWin, yMax, xMax);
-            sideWin = createSideWindow(sideWin, yMax, xMax);
+            win->clearWindow();
+            mainWin = win->getMainWindow();
+            sideWin = win->getSideWindow();
 
             if(highlight == 0){
                 int ch, collision;
@@ -52,7 +52,11 @@ int main(int argc, char ** argv){
                     }else{
                         player->movePlayer(ch);
                     }
+
+                    if(collision)
+                        break;
                 }
+
 
             }else if(highlight == 1){
                 // settings

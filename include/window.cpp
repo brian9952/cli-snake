@@ -7,6 +7,9 @@ Menu::Menu(WINDOW * mainWin_param, WINDOW * sideWin_param){
     keypad(mainWin, true);
 }
 
+WINDOW * Menu::getMainWindow(){ return mainWin; }
+WINDOW * Menu::getSideWindow(){ return sideWin; }
+
 void Menu::showMenu(int highlight){
     int yMax, xMax;
     getmaxyx(mainWin, yMax, xMax);
@@ -63,6 +66,17 @@ void Menu::sideMenu(int highlight){
 char Menu::getInput(){
     char c = wgetch(mainWin);
     return c;
+}
+
+void Menu::clearWindow(){
+    wclear(mainWin);
+    wclear(sideWin);
+
+    box(mainWin, 0, 0);
+    box(sideWin, 0, 0);
+
+    wrefresh(mainWin);
+    wrefresh(sideWin);
 }
 
 Menu::~Menu(){
