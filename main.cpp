@@ -55,8 +55,8 @@ int main(int argc, char ** argv){
 
                     if(collision)
                         break;
-                }
 
+                }
 
             }else if(highlight == 1){
                 // settings

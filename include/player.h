@@ -14,6 +14,11 @@ class Player {
         char direction[0]; // 'u' for up, 'l' for left, 'r' for right, 'd' for down
 
         void shiftArray(int *& arr);
+
+        void generatePrey();
+        int checkPrey();
+        void updateLength();
+
         int noneInput();
 
     public:

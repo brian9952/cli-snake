@@ -78,6 +78,18 @@ int Player::checkCollision(int yPos, int xPos, int yPos_hist[30], int xPos_hist[
     return 0;
 }
 
+void Player::generatePrey(){
+
+}
+
+int Player::checkPrey(){
+
+}
+
+void Player::updateLength(){
+
+}
+
 // private method
 int Player::noneInput(){
     int *yPos_p = yPos_hist;
