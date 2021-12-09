@@ -9,14 +9,14 @@ class Player {
         WINDOW * mainWin;
         WINDOW * sideWin;
         int yPos, xPos;
+        int yPos_prey[30], xPos_prey[30];
         int yPos_hist[30], xPos_hist[30];
         int length;
         char direction[0]; // 'u' for up, 'l' for left, 'r' for right, 'd' for down
 
         void shiftArray(int *& arr);
+        int generateRandom(int max);
 
-        void generatePrey();
-        int checkPrey();
         void updateLength();
 
         int noneInput();
@@ -25,6 +25,8 @@ class Player {
         Player(WINDOW * mainWin_param, WINDOW * sideWin_param);
         int movePlayer(char input);
         int checkCollision(int yPos, int xPos, int yPos_hist[30], int xPos_hist[30]);
+        void generatePrey();
+        int checkPrey();
         ~Player();
 
 };

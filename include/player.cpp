@@ -1,4 +1,5 @@
 #include "player.h"
+#include <cstdlib>
 #include <curses.h>
 
 Player::Player(WINDOW * mainWin_param, WINDOW * sideWin_param){
@@ -78,12 +79,40 @@ int Player::checkCollision(int yPos, int xPos, int yPos_hist[30], int xPos_hist[
     return 0;
 }
 
+int Player::generateRandom(int max){
+    int random = std::rand() % max + 1;
+    return random;
+}
+
 void Player::generatePrey(){
+    int yMax, xMax, yRand, xRand;
+    getmaxyx(mainWin, yMax, xMax);
+
+    for(int i = 0; i < 3; i++){
+        mvwprintw(mainWin, yPos_prey[i], xPos_prey[i], "%c", ' ');
+    }
+
+    for(int i = 0; i < 3; i++){
+        yRand = this->generateRandom(yMax);
+        xRand = this->generateRandom(xMax);
+
+        yPos_prey[i] = yRand;
+        xPos_prey[i] = xRand;
+
+        mvwprintw(mainWin, yRand, xRand, "%c", '&');
+    }
+
+    wrefresh(mainWin);
 
 }
 
 int Player::checkPrey(){
-
+    for(int i = 0; i < 3; i++){
+        if(yPos == yPos_prey[i] && xPos == xPos_prey[i]){
+            return 1;
+        }
+    }
+    return 0;
 }
 
 void Player::updateLength(){

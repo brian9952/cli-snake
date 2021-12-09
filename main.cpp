@@ -39,10 +39,16 @@ int main(int argc, char ** argv){
             sideWin = win->getSideWindow();
 
             if(highlight == 0){
-                int ch, collision;
+                int ch, collision, preyStatus = 0;
                 nodelay(stdscr, TRUE);
                 Player * player = new Player(mainWin, sideWin);
                 while(1){
+
+                    if(preyStatus == 0){
+                        player->generatePrey();
+                        preyStatus = 1;
+                    }
+
                     refresh();
                     ch = getch();
                     flushinp();
@@ -51,6 +57,10 @@ int main(int argc, char ** argv){
                         usleep(100000);
                     }else{
                         player->movePlayer(ch);
+                    }
+
+                    if(player->checkPrey()){
+                        preyStatus = 0;
                     }
 
                     if(collision)
