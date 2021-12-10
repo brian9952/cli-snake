@@ -120,7 +120,12 @@ int Player::checkPrey(){
 }
 
 void Player::updateLength(){
-
+    for(int i = 0; i < 3; i++){
+        if(yPos_hist[length] == yPos_hist[length] - 1){
+            yPos_hist[length + i] = yPos_hist[length] + 1;
+        }
+    }
+    length += 3;
 }
 
 // private method
@@ -178,13 +183,12 @@ int Player::noneInput(){
     mvwprintw(mainWin, yPos, xPos, "%c", '@');
     mvwprintw(mainWin, yPos_hist[length], xPos_hist[length], "%c", ' ');
 
-    if(this->checkCollision(yPos, xPos, yPos_hist, xPos_hist)){
-        this->updateLength();
-        mvwprintw(mainWin, 30, 1, "%s", "MAKAN");
-    }
-
     yPos_hist[0] = yPos;
     xPos_hist[0] = xPos;
+
+    if(this->checkPrey()){
+        this->updateLength();
+    }
 
     for(int i = 0; i < length; i++){
         mvwprintw(mainWin, i+1, 1, "%d %d", yPos_hist[i], xPos_hist[i]);
