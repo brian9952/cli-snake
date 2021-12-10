@@ -89,10 +89,12 @@ void Player::generatePrey(){
     getmaxyx(mainWin, yMax, xMax);
 
     for(int i = 0; i < 3; i++){
-        mvwprintw(mainWin, yPos_prey[i], xPos_prey[i], "%c", ' ');
-    }
+        if(yPos_prey[i] == yPos_eaten && xPos_prey[i] == xPos_eaten){
+            mvwprintw(mainWin, yPos_prey[i], xPos_prey[i], "%c", '@');
+        }else{
+            mvwprintw(mainWin, yPos_prey[i], xPos_prey[i], "%c", ' ');
+        }
 
-    for(int i = 0; i < 3; i++){
         yRand = this->generateRandom(yMax);
         xRand = this->generateRandom(xMax);
 
@@ -109,6 +111,8 @@ void Player::generatePrey(){
 int Player::checkPrey(){
     for(int i = 0; i < 3; i++){
         if(yPos == yPos_prey[i] && xPos == xPos_prey[i]){
+            yPos_eaten = yPos;
+            xPos_eaten = xPos;
             return 1;
         }
     }
@@ -168,12 +172,16 @@ int Player::noneInput(){
         collision = 0;
     }
 
-
     shiftArray(yPos_p);
     shiftArray(xPos_p);
 
     mvwprintw(mainWin, yPos, xPos, "%c", '@');
     mvwprintw(mainWin, yPos_hist[length], xPos_hist[length], "%c", ' ');
+
+    if(this->checkCollision(yPos, xPos, yPos_hist, xPos_hist)){
+        this->updateLength();
+        mvwprintw(mainWin, 30, 1, "%s", "MAKAN");
+    }
 
     yPos_hist[0] = yPos;
     xPos_hist[0] = xPos;

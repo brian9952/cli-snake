@@ -10,6 +10,7 @@ class Player {
         WINDOW * sideWin;
         int yPos, xPos;
         int yPos_prey[30], xPos_prey[30];
+        int yPos_eaten, xPos_eaten;
         int yPos_hist[30], xPos_hist[30];
         int length;
         char direction[0]; // 'u' for up, 'l' for left, 'r' for right, 'd' for down
