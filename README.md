@@ -1,5 +1,5 @@
 # cli-snake
-A snake game project using c++ (under construction)
+A snake game project using c++
 
 Install:
 
